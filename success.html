@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>ViviApp – Success</title>
+
+    <style>
+      :root {
+        --bg: #0b0f12;
+        --card: #11171c;
+        --text: #e9eef2;
+        --muted: rgba(233, 238, 242, 0.7);
+        --primary: #35c28d;
+        --border: rgba(233, 238, 242, 0.12);
+        --shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: radial-gradient(
+            1200px 800px at 20% 0%,
+            rgba(53, 194, 141, 0.18),
+            transparent 60%
+          ),
+          radial-gradient(
+            1000px 700px at 80% 20%,
+            rgba(53, 194, 141, 0.12),
+            transparent 55%
+          ),
+          var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: 520px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 16px;
+        background: rgba(53, 194, 141, 0.18);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+      }
+
+      /* Placeholder icon (you can replace with your real logo later) */
+      .logo svg {
+        width: 22px;
+        height: 22px;
+        fill: var(--primary);
+      }
+
+      .brand h1 {
+        font-size: 18px;
+        margin: 0;
+        font-weight: 850;
+        letter-spacing: 0.2px;
+      }
+
+      .brand p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.02)
+        );
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+
+      .title {
+        font-size: 18px;
+        font-weight: 900;
+        margin: 0 0 8px 0;
+      }
+
+      .subtitle {
+        margin: 0 0 16px 0;
+        color: var(--muted);
+        line-height: 1.45;
+        font-size: 14px;
+      }
+
+      .status {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        margin-bottom: 14px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: 0 0 0 6px rgba(53, 194, 141, 0.14);
+      }
+
+      .status b {
+        font-weight: 900;
+      }
+
+      .status span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .tiny {
+        margin-top: 16px;
+        text-align: center;
+        color: rgba(233, 238, 242, 0.55);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- Placeholder icon. Replace this block with your branded logo later -->
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M20.2 3.8C13.7 4 9.4 6.8 7 10c-2.6 3.5-3.2 8.2-3 10.2 2.1.2 6.7-.4 10.2-3 3.2-2.4 6-6.7 6.2-13.4ZM9.8 14.2c1.9-2.6 5.6-5.2 9.1-6.1-1 3.5-3.5 7.1-6.1 9.1-2.1 1.6-4.9 2.3-6.6 2.4.1-1.7.8-4.5 2.4-6.6Z"
+            />
+          </svg>
+        </div>
+        <div>
+          <h1 id="brandTitle">ViviApp</h1>
+          <p id="brandSubtitle">Account action</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="title" id="title">Success</h2>
+        <p class="subtitle" id="subtitle">
+          You can now return to ViviApp and sign in.
+        </p>
+
+        <div class="status" role="status" aria-live="polite">
+          <div class="dot"></div>
+          <div>
+            <b id="statusHeadline">All set</b><br />
+            <span id="statusText">You can close this page.</span>
+          </div>
+        </div>
+
+        <p class="tiny" id="footerTiny">You can close this page now.</p>
+      </div>
+    </div>
+
+    <script>
+      // Params
+      const params = new URLSearchParams(window.location.search);
+      const localeRaw = (params.get("locale") || "").toLowerCase().trim();
+      const locale = localeRaw === "es" || localeRaw === "en" ? localeRaw : "en";
+
+      // Optional: "verifyEmail" | "resetPassword"
+      const typeRaw = (params.get("type") || "").trim();
+
+      const STRINGS = {
+        en: {
+          brandSubtitle: "Account action",
+          // Generic
+          genericTitle: "Success",
+          genericSubtitle: "You can now return to ViviApp and sign in.",
+          genericHeadline: "All set",
+          genericStatus: "You can close this page.",
+          footer: "You can close this page now.",
+
+          // Verify email
+          verifyTitle: "Email verified",
+          verifySubtitle:
+            "Your email has been verified successfully. You can now return to ViviApp and sign in.",
+          verifyHeadline: "Email verified",
+          verifyStatus: "Return to ViviApp to continue.",
+
+          // Reset password
+          resetTitle: "Password updated",
+          resetSubtitle:
+            "Your password has been changed successfully. You can now return to ViviApp and sign in.",
+          resetHeadline: "Password updated",
+          resetStatus: "Return to ViviApp to sign in.",
+        },
+
+        es: {
+          brandSubtitle: "Acción de cuenta",
+          // Generic
+          genericTitle: "Listo",
+          genericSubtitle:
+            "Ya puedes volver a ViviApp e iniciar sesión.",
+          genericHeadline: "Todo listo",
+          genericStatus: "Puedes cerrar esta página.",
+          footer: "Puedes cerrar esta página ahora.",
+
+          // Verify email
+          verifyTitle: "Correo verificado",
+          verifySubtitle:
+            "Tu correo fue verificado correctamente. Ya puedes volver a ViviApp e iniciar sesión.",
+          verifyHeadline: "Correo verificado",
+          verifyStatus: "Vuelve a ViviApp para continuar.",
+
+          // Reset password
+          resetTitle: "Contraseña actualizada",
+          resetSubtitle:
+            "Tu contraseña se cambió correctamente. Ya puedes volver a ViviApp e iniciar sesión.",
+          resetHeadline: "Contraseña actualizada",
+          resetStatus: "Vuelve a ViviApp para iniciar sesión.",
+        },
+      }[locale];
+
+      function setText(id, value) {
+        const node = document.getElementById(id);
+        if (node) node.textContent = value;
+      }
+
+      setText("brandSubtitle", STRINGS.brandSubtitle);
+
+      const type = typeRaw === "verifyEmail" || typeRaw === "resetPassword"
+        ? typeRaw
+        : "generic";
+
+      if (type === "verifyEmail") {
+        setText("title", STRINGS.verifyTitle);
+        setText("subtitle", STRINGS.verifySubtitle);
+        setText("statusHeadline", STRINGS.verifyHeadline);
+        setText("statusText", STRINGS.verifyStatus);
+        setText("footerTiny", STRINGS.footer);
+      } else if (type === "resetPassword") {
+        setText("title", STRINGS.resetTitle);
+        setText("subtitle", STRINGS.resetSubtitle);
+        setText("statusHeadline", STRINGS.resetHeadline);
+        setText("statusText", STRINGS.resetStatus);
+        setText("footerTiny", STRINGS.footer);
+      } else {
+        setText("title", STRINGS.genericTitle);
+        setText("subtitle", STRINGS.genericSubtitle);
+        setText("statusHeadline", STRINGS.genericHeadline);
+        setText("statusText", STRINGS.genericStatus);
+        setText("footerTiny", STRINGS.footer);
+      }
+    </script>
+  </body>
+</html>
