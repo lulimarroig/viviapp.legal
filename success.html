@@ -66,13 +66,13 @@
         display: grid;
         place-items: center;
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
       }
 
-      /* Placeholder icon (you can replace with your real logo later) */
-      .logo svg {
-        width: 22px;
-        height: 22px;
-        fill: var(--primary);
+      .logo img {
+        width: 70%;
+        height: 70%;
+        object-fit: contain;
       }
 
       .brand h1 {
@@ -154,12 +154,7 @@
     <div class="wrap">
       <div class="brand">
         <div class="logo" aria-hidden="true">
-          <!-- Placeholder icon. Replace this block with your branded logo later -->
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M20.2 3.8C13.7 4 9.4 6.8 7 10c-2.6 3.5-3.2 8.2-3 10.2 2.1.2 6.7-.4 10.2-3 3.2-2.4 6-6.7 6.2-13.4ZM9.8 14.2c1.9-2.6 5.6-5.2 9.1-6.1-1 3.5-3.5 7.1-6.1 9.1-2.1 1.6-4.9 2.3-6.6 2.4.1-1.7.8-4.5 2.4-6.6Z"
-            />
-          </svg>
+          <img src="assets/viviapp_logo.svg" alt="ViviApp logo" />
         </div>
         <div>
           <h1 id="brandTitle">ViviApp</h1>
@@ -186,57 +181,42 @@
     </div>
 
     <script>
-      // Params
       const params = new URLSearchParams(window.location.search);
       const localeRaw = (params.get("locale") || "").toLowerCase().trim();
       const locale = localeRaw === "es" || localeRaw === "en" ? localeRaw : "en";
-
-      // Optional: "verifyEmail" | "resetPassword"
       const typeRaw = (params.get("type") || "").trim();
 
       const STRINGS = {
         en: {
           brandSubtitle: "Account action",
-          // Generic
           genericTitle: "Success",
           genericSubtitle: "You can now return to ViviApp and sign in.",
           genericHeadline: "All set",
           genericStatus: "You can close this page.",
           footer: "You can close this page now.",
-
-          // Verify email
           verifyTitle: "Email verified",
           verifySubtitle:
             "Your email has been verified successfully. You can now return to ViviApp and sign in.",
           verifyHeadline: "Email verified",
           verifyStatus: "Return to ViviApp to continue.",
-
-          // Reset password
           resetTitle: "Password updated",
           resetSubtitle:
             "Your password has been changed successfully. You can now return to ViviApp and sign in.",
           resetHeadline: "Password updated",
           resetStatus: "Return to ViviApp to sign in.",
         },
-
         es: {
           brandSubtitle: "Acción de cuenta",
-          // Generic
           genericTitle: "Listo",
-          genericSubtitle:
-            "Ya puedes volver a ViviApp e iniciar sesión.",
+          genericSubtitle: "Ya puedes volver a ViviApp e iniciar sesión.",
           genericHeadline: "Todo listo",
           genericStatus: "Puedes cerrar esta página.",
           footer: "Puedes cerrar esta página ahora.",
-
-          // Verify email
           verifyTitle: "Correo verificado",
           verifySubtitle:
             "Tu correo fue verificado correctamente. Ya puedes volver a ViviApp e iniciar sesión.",
           verifyHeadline: "Correo verificado",
           verifyStatus: "Vuelve a ViviApp para continuar.",
-
-          // Reset password
           resetTitle: "Contraseña actualizada",
           resetSubtitle:
             "Tu contraseña se cambió correctamente. Ya puedes volver a ViviApp e iniciar sesión.",
@@ -252,9 +232,10 @@
 
       setText("brandSubtitle", STRINGS.brandSubtitle);
 
-      const type = typeRaw === "verifyEmail" || typeRaw === "resetPassword"
-        ? typeRaw
-        : "generic";
+      const type =
+        typeRaw === "verifyEmail" || typeRaw === "resetPassword"
+          ? typeRaw
+          : "generic";
 
       if (type === "verifyEmail") {
         setText("title", STRINGS.verifyTitle);
